@@ -277,6 +277,11 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
             [file closeFile];
         }
         self.outputStream = [NSOutputStream outputStreamToFileAtPath:tempPath append:isResuming];
+        //fix new outputStream's runLoop[疑似有问题，待验证]
+        //NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        //for (NSString *runLoopMode in self.runLoopModes) {
+        //    [self.outputStream scheduleInRunLoop:runLoop forMode:runLoopMode];
+        //}
         [self.outputStream open];
     }
 }
